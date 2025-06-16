@@ -89,8 +89,8 @@ class TestCart:
         # добавление продукта в корзину
         with pytest.raises(ValueError) as exception:
             cart_test.add_product(product, 0)
-        # проверка, что продукт не был добавлен
-        assert product not in cart_test.products
+        # проверка, что возникает ошибка и что продукт не был добавлен
+        assert exception.typename == 'ValueError' and product not in cart_test.products
 
     # ****************************************
 
@@ -112,7 +112,7 @@ class TestCart:
         cart_test.products[product] = 5
         cart_test.products[product_new] = 7
         # удаление продукта с указанием количества, большего чем есть
-        cart_test.remove_product(product, 50)
+        cart_test.remove_product(product, 6)
         # проверка, что удален только продукт product, количество продукта product_new не изменилось
         assert product not in cart_test.products and product_new in cart_test.products and cart_test.products[
             product_new] == 7

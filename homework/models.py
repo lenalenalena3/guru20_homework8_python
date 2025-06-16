@@ -75,7 +75,7 @@ class Cart:
         """
         if product in self.products:
             if remove_count is not None and remove_count < self.products[product]:
-                self.products[product] = self.products[product] - remove_count
+                self.products[product] -= remove_count
             else:
                 del self.products[product]
         else:
